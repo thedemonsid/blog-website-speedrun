@@ -20,7 +20,10 @@ class BlogService {
       };
     } catch (error: unknown) {
       if (error instanceof Error) {
-        return { success: false, message: `Error retrieving blogs: ${error.message}` };
+        return {
+          success: false,
+          message: `Error retrieving blogs: ${error.message}`,
+        };
       }
       return { success: false, message: "Unknown error occurred" };
     }
@@ -44,7 +47,10 @@ class BlogService {
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        return { success: false, message: `Error retrieving blog: ${error.message}` };
+        return {
+          success: false,
+          message: `Error retrieving blog: ${error.message}`,
+        };
       }
       return { success: false, message: "Unknown error occurred" };
     }
@@ -63,10 +69,17 @@ class BlogService {
       const blog = await prisma.blogs.create({
         data,
       });
-      return { success: true, message: "Blog created successfully", data: blog };
+      return {
+        success: true,
+        message: "Blog created successfully",
+        data: blog,
+      };
     } catch (error: unknown) {
       if (error instanceof Error) {
-        return { success: false, message: `Error creating blog: ${error.message}` };
+        return {
+          success: false,
+          message: `Error creating blog: ${error.message}`,
+        };
       }
       return { success: false, message: "Unknown error occurred" };
     }
@@ -87,10 +100,17 @@ class BlogService {
         },
         data,
       });
-      return { success: true, message: "Blog updated successfully", data: blog };
+      return {
+        success: true,
+        message: "Blog updated successfully",
+        data: blog,
+      };
     } catch (error: unknown) {
       if (error instanceof Error) {
-        return { success: false, message: `Error updating blog: ${error.message}` };
+        return {
+          success: false,
+          message: `Error updating blog: ${error.message}`,
+        };
       }
       return { success: false, message: "Unknown error occurred" };
     }
@@ -103,10 +123,17 @@ class BlogService {
           id,
         },
       });
-      return { success: true, message: "Blog deleted successfully", data: blog };
+      return {
+        success: true,
+        message: "Blog deleted successfully",
+        data: blog,
+      };
     } catch (error: unknown) {
       if (error instanceof Error) {
-        return { success: false, message: `Error deleting blog: ${error.message}` };
+        return {
+          success: false,
+          message: `Error deleting blog: ${error.message}`,
+        };
       }
       return { success: false, message: "Unknown error occurred" };
     }
@@ -129,7 +156,10 @@ class BlogService {
       };
     } catch (error: unknown) {
       if (error instanceof Error) {
-        return { success: false, message: `Error retrieving blogs: ${error.message}` };
+        return {
+          success: false,
+          message: `Error retrieving blogs: ${error.message}`,
+        };
       }
       return { success: false, message: "Unknown error occurred" };
     }

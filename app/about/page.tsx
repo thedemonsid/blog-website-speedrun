@@ -1,7 +1,11 @@
 import React from "react";
-
+import AboutPage from "@/components/about-page";
 const page = () => {
-  return <div className="text-black text-center mt-52">Hi</div>;
+  return (
+    <div>
+      <AboutPage />
+    </div>
+  );
 };
 
 export default page;

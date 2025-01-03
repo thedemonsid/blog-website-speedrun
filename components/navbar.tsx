@@ -1,45 +1,45 @@
 "use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import { Search } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "Blog", href: "/blogs" }, // Changed from /blog to /blogs
+  { name: "Blog", href: "/blogs" },
   { name: "About", href: "/about" },
 ];
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-800 backdrop-blur-sm">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center text-white">
-              <div className="w-8 h-8 rounded-full bg-gray-700">
-                <Image
-                  src="/images/logo.jpeg" // Temporarily using placeholder
-                  alt="Logo"
-                  width={32}
-                  height={32}
-                  className="rounded-full"
-                  priority
-                />
-              </div>
-              <span className="ml-2 text-lg font-bold">vdsidously</span>
-            </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5">
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-xl" />
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
+        <div className="flex items-center h-16">
+          <Link
+            href="/"
+            className="flex items-center text-[#8490ff] hover:text-[#99a3ff] transition-colors mr-8"
+          >
+            <span className="text-lg font-semibold tracking-tight">
+              vdsidously
+            </span>
+          </Link>
+
+          <div className="flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-[15px] text-zinc-300/90 hover:text-white transition-colors"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
-          <div className="hidden md:block">
-            <div className="flex items-baseline ml-10 space-x-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+
+          <div className="flex items-center space-x-5 ml-auto">
+            <button className="p-1.5 text-zinc-400/90 hover:text-white transition-colors rounded-md hover:bg-white/5">
+              <Search size={20} />
+            </button>
           </div>
         </div>
       </div>

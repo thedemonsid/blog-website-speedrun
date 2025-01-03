@@ -1,7 +1,12 @@
-import React from "react";
+// app/blogs/page.tsx
+import { BlogService } from "@/actions/blogs";
+import BlogsList from "@/components/blog-list";
 
-const page = () => {
-  return <div>page</div>;
-};
+const blogService = new BlogService();
 
-export default page;
+export default async function BlogsPage() {
+  const blogsResponse = await blogService.getBlogs();
+  const blogs = blogsResponse.success ? blogsResponse.data : [];
+
+  return <BlogsList blogs={blogs} />;
+}
