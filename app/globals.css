@@ -2,51 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --font-wotfard: "Wotfard", sans-serif;
+    --background: 234 12% 5%;
+    --foreground: 234 5% 90%;
+    --card: 234 12% 0%;
+    --card-foreground: 234 5% 90%;
+    --popover: 234 12% 5%;
+    --popover-foreground: 234 5% 90%;
+    --primary: 234 27% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 234 12% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 196 12% 15%;
+    --muted-foreground: 234 5% 60%;
+    --accent: 196 12% 15%;
+    --accent-foreground: 234 5% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 234 5% 90%;
+    --border: 234 20% 18%;
+    --input: 234 20% 18%;
+    --ring: 234 27% 33%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 234 12% 5%;
+    --foreground: 234 5% 90%;
+    --card: 234 12% 0%;
+    --card-foreground: 234 5% 90%;
+    --popover: 234 12% 5%;
+    --popover-foreground: 234 5% 90%;
+    --primary: 234 27% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 234 12% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 196 12% 15%;
+    --muted-foreground: 234 5% 60%;
+    --accent: 196 12% 15%;
+    --accent-foreground: 234 5% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 234 5% 90%;
+    --border: 234 20% 18%;
+    --input: 234 20% 18%;
+    --ring: 234 27% 33%;
+    --radius: 0.5rem;
+  }
 }
-
-:root {
-  --background: 234 12% 5%;
-  --foreground: 234 5% 90%;
-  --card: 234 12% 0%;
-  --card-foreground: 234 5% 90%;
-  --popover: 234 12% 5%;
-  --popover-foreground: 234 5% 90%;
-  --primary: 234 27% 33%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 234 12% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 196 12% 15%;
-  --muted-foreground: 234 5% 60%;
-  --accent: 196 12% 15%;
-  --accent-foreground: 234 5% 90%;
-  --destructive: 0 50% 30%;
-  --destructive-foreground: 234 5% 90%;
-  --border: 234 20% 18%;
-  --input: 234 20% 18%;
-  --ring: 234 27% 33%;
-  --radius: 0.5rem;
-}
-.dark {
-  --background: 234 12% 5%;
-  --foreground: 234 5% 90%;
-  --card: 234 12% 0%;
-  --card-foreground: 234 5% 90%;
-  --popover: 234 12% 5%;
-  --popover-foreground: 234 5% 90%;
-  --primary: 234 27% 33%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 234 12% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 196 12% 15%;
-  --muted-foreground: 234 5% 60%;
-  --accent: 196 12% 15%;
-  --accent-foreground: 234 5% 90%;
-  --destructive: 0 50% 30%;
-  --destructive-foreground: 234 5% 90%;
-  --border: 234 20% 18%;
-  --input: 234 20% 18%;
-  --ring: 234 27% 33%;
-  --radius: 0.5rem;
+@font-face {
+  font-family: "Wotfard";
+  src: url("../public/fonts/wotfard-regular-webfont.ttf") format("truetype");
 }
