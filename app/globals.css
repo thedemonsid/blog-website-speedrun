@@ -2,51 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --font-wotfard: "Wotfard", sans-serif;
+
+    /* Light theme - Carefully calibrated for optimal visibility */
+    --background: 220 25% 97%; /* Soft cool white background */
+    --foreground: 225 25% 20%; /* Deep readable text */
+
+    /* Card */
+    --card: 0 0% 100%;
+    --card-foreground: 225 25% 20%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 25% 20%;
+
+    /* Primary - Balanced blue tone */
+    --primary: 221 83% 53%; /* Strong blue */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Subtle interaction colors */
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 225 25% 20%;
+
+    /* Muted - Subtle but visible */
+    --muted: 220 14% 90%;
+    --muted-foreground: 220 8% 46%;
+
+    /* Accent - Distinct but not overwhelming */
+    --accent: 220 14% 90%;
+    --accent-foreground: 225 25% 20%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Border & Input - Subtle definition */
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
+    --ring: 222 84% 70%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark theme - Optimized for reduced eye strain */
+    --background: 225 25% 9%; /* Rich dark background */
+    --foreground: 210 20% 98%; /* Clear, readable text */
+
+    /* Card */
+    --card: 225 25% 11%;
+    --card-foreground: 210 20% 98%;
+
+    /* Popover */
+    --popover: 225 25% 11%;
+    --popover-foreground: 210 20% 98%;
+
+    /* Primary - Vibrant but not harsh */
+    --primary: 217 91% 60%; /* Bright blue */
+    --primary-foreground: 210 20% 98%;
+
+    /* Secondary */
+    --secondary: 225 25% 16%;
+    --secondary-foreground: 210 20% 98%;
+
+    /* Muted - Visible but subdued */
+    --muted: 225 25% 16%;
+    --muted-foreground: 217 16% 76%;
+
+    /* Accent */
+    --accent: 225 25% 16%;
+    --accent-foreground: 210 20% 98%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+
+    /* Border & Input - Clear boundaries */
+    --border: 225 25% 16%;
+    --input: 225 25% 16%;
+    --ring: 224 76% 48%;
+  }
 }
 
-:root {
-  --background: 234 12% 5%;
-  --foreground: 234 5% 90%;
-  --card: 234 12% 0%;
-  --card-foreground: 234 5% 90%;
-  --popover: 234 12% 5%;
-  --popover-foreground: 234 5% 90%;
-  --primary: 234 27% 33%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 234 12% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 196 12% 15%;
-  --muted-foreground: 234 5% 60%;
-  --accent: 196 12% 15%;
-  --accent-foreground: 234 5% 90%;
-  --destructive: 0 50% 30%;
-  --destructive-foreground: 234 5% 90%;
-  --border: 234 20% 18%;
-  --input: 234 20% 18%;
-  --ring: 234 27% 33%;
-  --radius: 0.5rem;
-}
-.dark {
-  --background: 234 12% 5%;
-  --foreground: 234 5% 90%;
-  --card: 234 12% 0%;
-  --card-foreground: 234 5% 90%;
-  --popover: 234 12% 5%;
-  --popover-foreground: 234 5% 90%;
-  --primary: 234 27% 33%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 234 12% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 196 12% 15%;
-  --muted-foreground: 234 5% 60%;
-  --accent: 196 12% 15%;
-  --accent-foreground: 234 5% 90%;
-  --destructive: 0 50% 30%;
-  --destructive-foreground: 234 5% 90%;
-  --border: 234 20% 18%;
-  --input: 234 20% 18%;
-  --ring: 234 27% 33%;
-  --radius: 0.5rem;
+@font-face {
+  font-family: "Wotfard";
+  src: url("../public/fonts/wotfard-regular-webfont.ttf") format("truetype");
 }

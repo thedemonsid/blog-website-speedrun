@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-zinc-900 text-white px-4 py-20">
+    <main className="min-h-screen bg-gradient-to-b from-background via-background/90 to-background text-foreground px-4 py-20">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -21,10 +21,10 @@ export default function AboutPage() {
             transition={{ delay: 0.2 }}
             className="inline-flex items-center space-x-2 text-sm"
           >
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-zinc-800">
-              <Terminal className="w-4 h-4 text-purple-400" />
-              <span className="font-mono text-zinc-400">
-                <span className="text-purple-400">~/</span>about-us
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/30 backdrop-blur-sm border border-border">
+              <Terminal className="w-4 h-4 text-primary" />
+              <span className="font-mono text-muted-foreground">
+                <span className="text-primary">~/</span>about-us
               </span>
             </div>
           </motion.div>
@@ -33,7 +33,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-muted via-inherit to-primary bg-clip-text text-secondary-foreground/90"
           >
             About Us
           </motion.h1>
@@ -46,7 +46,7 @@ export default function AboutPage() {
           transition={{ delay: 0.4 }}
           className="prose prose-invert max-w-none"
         >
-          <div className="text-lg text-zinc-300 leading-relaxed space-y-6">
+          <div className="text-lg text-primary leading-relaxed space-y-6">
             <p>
               We are childhood friends from a town in Maharashtra. It&apos;s
               been since almost childhood that we love to explore the subject in
@@ -80,13 +80,13 @@ export default function AboutPage() {
           transition={{ delay: 0.5 }}
           className="space-y-8"
         >
-          <Card className="bg-zinc-900/30 border-zinc-800">
+          <Card className="bg-background border-border/50">
             <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-2 text-2xl font-bold text-purple-300">
+              <div className="flex items-center gap-2 text-2xl font-bold text-primary">
                 <Code2 className="w-6 h-6" />
                 What we Aim to bring
               </div>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-300">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-primary">
                 {[
                   "Fun nitty-gritty of stuff",
                   "Understandable language",
@@ -96,7 +96,7 @@ export default function AboutPage() {
                   "Things to make your code cleaner",
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full" />
                     {item}
                   </li>
                 ))}
@@ -105,16 +105,16 @@ export default function AboutPage() {
           </Card>
 
           {/* Recommendations */}
-          <Card className="bg-zinc-900/30 border-zinc-800">
+          <Card className="bg-background border-border/50">
             <CardContent className="p-6 space-y-6">
-              <div className="flex items-center gap-2 text-2xl font-bold text-purple-300">
+              <div className="flex items-center gap-2 text-2xl font-bold text-primary">
                 <Terminal className="w-6 h-6" />
                 Recommendations
               </div>
 
-              <div className="space-y-6 text-zinc-300">
+              <div className="space-y-6 text-primary">
                 <div className="space-y-2">
-                  <h3 className="font-semibold text-zinc-200">
+                  <h3 className="font-semibold text-primary">
                     Youtube channels
                   </h3>
                   <div className="flex gap-4 flex-wrap">
@@ -130,7 +130,7 @@ export default function AboutPage() {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300"
+                        className="inline-flex items-center gap-1 text-primary hover:text-muted-foreground"
                       >
                         {name}
                         <ExternalLink className="w-3 h-3" />
@@ -140,8 +140,8 @@ export default function AboutPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-semibold text-zinc-200">Our Setup</h3>
-                  <div className="grid gap-3 text-zinc-300">
+                  <h3 className="font-semibold text-primary">Our Setup</h3>
+                  <div className="grid gap-3 text-primary">
                     <p>Editor: VS Code</p>
                     <p>Terminal: Warp Terminal (Vdcds)</p>
                     <p>API Testing: Postman (the_demon_sid)</p>
@@ -151,7 +151,7 @@ export default function AboutPage() {
                         href="https://chai-desktop.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-purple-400 hover:text-purple-300 inline-flex items-center"
+                        className="text-primary hover:text-muted inline-flex items-center"
                       >
                         Chai theme <ExternalLink className="w-3 h-3 ml-0.5" />
                       </a>
@@ -160,13 +160,13 @@ export default function AboutPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-semibold text-zinc-200">Our Machines</h3>
+                  <h3 className="font-semibold text-primary">Our Machines</h3>
                   <div className="space-y-2">
                     <a
                       href="https://www.asus.com/Laptops/For-Gaming/TUF-Gaming/ASUS-TUF-Gaming-F15-2022/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className=" text-purple-400 hover:text-purple-300 inline-flex items-center"
+                      className=" text-primary hover:text-muted-foreground inline-flex items-center"
                     >
                       Asus TUF F15 (The Demon Sid){" "}
                       <ExternalLink className="w-3 h-3 ml-1" />
@@ -175,7 +175,7 @@ export default function AboutPage() {
                       href="https://www.asus.com/Laptops/For-Home/Vivobook/Vivobook-K14-OLED-K3402Z/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className=" text-purple-400 hover:text-purple-300 inline-flex items-center"
+                      className=" text-primary hover:text-muted-foreground inline-flex items-center"
                     >
                       Asus Vivobook K14 OLED (Vdcds){" "}
                       <ExternalLink className="w-3 h-3 ml-1" />

@@ -8,5 +8,5 @@ export default async function BlogsPage() {
   const blogsResponse = await blogService.getBlogs();
   const blogs = blogsResponse.success ? blogsResponse.data : [];
 
-  return <BlogsList blogs={blogs} />;
+  return <BlogsList blogs={blogs ?? []} />;
 }

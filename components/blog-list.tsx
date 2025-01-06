@@ -20,14 +20,14 @@ interface BlogsListProps {
 
 export default function BlogsList({ blogs }: BlogsListProps) {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-zinc-900 text-white px-4 py-20">
+    <main className="min-h-screen bg-gradient-to-b from-background via-background/90 to-background text-foreground px-4 py-20">
       <div className="max-w-5xl mx-auto">
         <header className="mb-20 space-y-6">
           <div className="space-y-2">
-            <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-foreground via-foreground/80 to-muted-foreground bg-clip-text text-transparent">
               Articles and Tutorials
             </h1>
-            <p className="text-zinc-400 text-lg max-w-2xl">
+            <p className="text-muted-foreground text-lg max-w-2xl">
               {blogs.length} hand-crafted articles about JavaScript, React, and
               modern web development
             </p>
@@ -40,7 +40,7 @@ export default function BlogsList({ blogs }: BlogsListProps) {
           {blogs.map((blog) => (
             <Card
               key={blog.id}
-              className="group relative bg-zinc-900/30 border-zinc-800/50 hover:border-zinc-700/80 backdrop-blur-sm transition-all duration-500"
+              className="group relative bg-background border-border/50 hover:border-border backdrop-blur-sm transition-all duration-500"
             >
               <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -69,7 +69,7 @@ export default function BlogsList({ blogs }: BlogsListProps) {
                   href={`/blogs/${blog.id}`}
                   className="block space-y-3 group/link"
                 >
-                  <h2 className="text-2xl font-bold text-zinc-100 group-hover:text-purple-300 transition-colors duration-300">
+                  <h2 className="text-2xl font-bold text-primary group-hover:text-muted-foreground transition-colors duration-300">
                     {blog.title}
                   </h2>
 
