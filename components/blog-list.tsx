@@ -7,11 +7,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 interface Blog {
-  id: string;
-  title: string;
-  description: string;
-  category?: string;
-  createdAt?: Date;
+  slug: string;
+  metadata: {
+    title: string;
+    publishedAt: string;
+    summary: string;
+    category: string;
+  };
+  content: string;
 }
 
 interface BlogsListProps {
@@ -39,42 +42,44 @@ export default function BlogsList({ blogs }: BlogsListProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {blogs.map((blog) => (
             <Card
-              key={blog.id}
+              key={blog.slug}
               className="group relative bg-background border-border/50 hover:border-border backdrop-blur-sm transition-all duration-500"
             >
               <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-center gap-4 flex-wrap">
-                  {blog.category && (
+                  {blog.metadata.category && (
                     <Badge
                       variant="secondary"
                       className="bg-purple-500/10 text-purple-300 border border-purple-500/20 font-mono"
                     >
                       <Tag className="w-3 h-3 mr-1" />
-                      {blog.category}
+                      {blog.metadata.category}
                     </Badge>
                   )}
 
                   <div className="flex items-center text-sm text-zinc-500">
                     <Clock className="w-3 h-3 mr-1" />
                     <span>
-                      {blog.createdAt &&
-                        new Date(blog.createdAt).toLocaleDateString()}
+                      {blog.metadata.publishedAt &&
+                        new Date(
+                          blog.metadata.publishedAt
+                        ).toLocaleDateString()}
                     </span>
                   </div>
                 </div>
 
                 <Link
-                  href={`/blogs/${blog.id}`}
+                  href={`/blogs/${blog.slug}`}
                   className="block space-y-3 group/link"
                 >
                   <h2 className="text-2xl font-bold text-primary group-hover:text-muted-foreground transition-colors duration-300">
-                    {blog.title}
+                    {blog.metadata.title}
                   </h2>
 
                   <p className="text-zinc-400 leading-relaxed">
-                    {blog.description}
+                    {blog.metadata.summary}
                   </p>
 
                   <div className="inline-flex items-center gap-2 text-[15px] text-zinc-500 group-hover/link:text-purple-300 transition-colors duration-300">

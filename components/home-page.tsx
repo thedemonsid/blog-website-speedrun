@@ -5,13 +5,17 @@ import { Terminal, Timer, ArrowRight, Code2 } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Cloud } from "@/components/cloud";
+import { formatDate } from "@/lib/format-date";
 
 interface Blog {
-  id: string;
-  title: string;
-  description: string;
-  category?: string;
-  readTime?: number;
+  slug: string;
+  metadata: {
+    title: string;
+    publishedAt: string;
+    summary: string;
+    category: string;
+  };
+  content: string;
 }
 
 interface HomePageProps {
@@ -82,37 +86,37 @@ export default function HomePage({ initialBlogs }: HomePageProps) {
             <div className="grid gap-8">
               {initialBlogs.map((blog, i) => (
                 <motion.div
-                  key={blog.id}
+                  key={blog.slug}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <Link href={`/blogs/${blog.id}`} className="group">
+                  <Link href={`/blogs/${blog.slug}`} className="group">
                     <article className="relative p-6 rounded-lg border border-border bg-card/30 backdrop-blur-sm hover:bg-card/50 hover:border-primary/50 transition-all">
                       <div className="flex items-center gap-4">
                         <Badge
                           variant="secondary"
                           className="flex items-center gap-2"
                         >
-                          {blog.category?.includes("code") ? (
+                          {blog.metadata.category?.includes("code") ? (
                             <Code2 className="w-4 h-4" />
                           ) : (
                             <Terminal className="w-4 h-4" />
                           )}
-                          {blog.category || "0x01"}
+                          {blog.metadata.category || "0x01"}
                         </Badge>
                         <div className="flex items-center text-sm text-muted-foreground">
                           <Timer className="w-4 h-4 mr-1" />
-                          <span>{blog.readTime || "5"} min read</span>
+                          <span>{formatDate(blog.metadata.publishedAt)}</span>
                         </div>
                       </div>
 
                       <div className="mt-4 space-y-2">
                         <h2 className="text-xl font-semibold text-foreground">
-                          {blog.title}
+                          {blog.metadata.title}
                         </h2>
                         <p className="text-muted-foreground">
-                          {blog.description}
+                          {blog.metadata.summary}
                         </p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-primary transition-colors">
                           Read article
