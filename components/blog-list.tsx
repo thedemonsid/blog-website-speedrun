@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { formatDate } from "@/lib/format-date";
 
 interface Blog {
   slug: string;
@@ -61,12 +62,7 @@ export default function BlogsList({ blogs }: BlogsListProps) {
 
                   <div className="flex items-center text-sm text-zinc-500">
                     <Clock className="w-3 h-3 mr-1" />
-                    <span>
-                      {blog.metadata.publishedAt &&
-                        new Date(
-                          blog.metadata.publishedAt
-                        ).toLocaleDateString()}
-                    </span>
+                    <span>{formatDate(blog.metadata.publishedAt)}</span>
                   </div>
                 </div>
 
