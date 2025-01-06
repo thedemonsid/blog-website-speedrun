@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import NavBar from "@/components/navbar";
-import localFont from "next/font/local";
 import Footer from "@/components/footer";
-
-const wotfard = localFont({
-  src: "../public/fonts/wotfard-regular-webfont.ttf",
-  variable: "--font-wotfard",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`antialiased`}>
-        <NavBar></NavBar>
-        {children}
-        <Footer></Footer>
+        <ThemeProvider attribute="class" defaultTheme="system">
+          <NavBar></NavBar>
+          {children}
+          <Footer></Footer>
+        </ThemeProvider>
       </body>
     </html>
   );

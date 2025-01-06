@@ -27,22 +27,24 @@ const footerData = {
 
 const Footer = () => {
   return (
-    <footer className="relative  font-bold text-zinc-400 bg-gradient-to-r bg-zinc-7 via-zinc-800 to-zinc-900 text-xl font-wotfard">
+    <footer className="relative font-bold bg-background text-xl font-wotfard">
       {/* Subtle top border */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
       <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col justify-start items-start space-y-6">
-        <div className="grid  gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-2"
           >
-            <p className="text-zinc-400 text-sm">
+            <p className="text-muted-foreground text-sm">
               © {footerData.copyright.year}{" "}
               {footerData.copyright.authors.join(" & ")}
             </p>
-            <p className="text-zinc-600 text-xs">{footerData.copyright.text}</p>
+            <p className="text-muted-foreground/60 text-xs">
+              {footerData.copyright.text}
+            </p>
           </motion.div>
 
           <motion.div
@@ -56,7 +58,7 @@ const Footer = () => {
                 <a
                   key={social.username}
                   href={social.url}
-                  className="text-yellow-400 hover:text-zinc-200 transition-colors flex items-center gap-3 text-lg"
+                  className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-3 text-lg"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -67,7 +69,7 @@ const Footer = () => {
 
             <a
               href={footerData.sourceCode.url}
-              className="text-yellow-400 hover:text-zinc-200 transition-colors flex items-center gap-1.5 text-sm md:justify-end"
+              className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5 text-sm md:justify-end"
               target="_blank"
               rel="noopener noreferrer"
             >
