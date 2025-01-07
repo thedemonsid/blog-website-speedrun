@@ -1,4 +1,3 @@
-import { BlogService } from "@/actions/blogs";
 import HomePage from "@/components/home-page";
 import { getBlogPosts } from "./blogs/utils";
 
