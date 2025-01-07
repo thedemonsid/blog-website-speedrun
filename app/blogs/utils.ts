@@ -17,7 +17,8 @@ async function readMDXfile(filePath: string) {
 export type BlogProps = {
   metadata: {
     title: string;
-    publishedAt: any;
+
+    publishedAt: string;
     summary: string;
     category: string;
     author: string;
