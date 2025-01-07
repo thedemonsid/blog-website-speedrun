@@ -9,7 +9,7 @@ import { CodeBlock } from "./code-block";
 import MyComponent from "./my-component";
 import { cn } from "@/lib/utils";
 
-function slugify(text) {
+function slugify(text: string) {
   return text
     .toString()
     .toLowerCase()
@@ -18,9 +18,10 @@ function slugify(text) {
     .replace(/&/g, "-and-")
     .replace(/\-\-+/g, "-");
 }
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
+function createHeading(level: HeadingLevel) {
+  const Heading = ({ children }: any) => {
     const slug = slugify(children);
 
     const headingClasses = {
@@ -64,7 +65,7 @@ function createHeading(level) {
   return Heading;
 }
 
-function RoundedImage(props) {
+function RoundedImage(props: any) {
   return (
     <figure className="my-10 overflow-hidden rounded-lg ring-1 ring-border/50">
       <div className="relative aspect-video overflow-hidden bg-muted/50">
@@ -83,7 +84,7 @@ function RoundedImage(props) {
   );
 }
 
-function CustomLink(props) {
+function CustomLink(props: any) {
   const href = props.href;
 
   const linkClasses = cn(
@@ -113,7 +114,7 @@ function CustomLink(props) {
   );
 }
 
-function Code({ children, className }) {
+function Code({ children, className }: any) {
   const codeHTML = highlight(children);
   const language = className?.replace("language-", "") || "plaintext";
 
@@ -124,7 +125,7 @@ function Code({ children, className }) {
   );
 }
 
-function BlockQuote(props) {
+function BlockQuote(props: any) {
   return (
     <blockquote
       {...props}
@@ -138,14 +139,14 @@ function BlockQuote(props) {
   );
 }
 
-function Table({ data }) {
+function Table({ data }: any) {
   return (
     <div className="my-8 w-full overflow-hidden rounded-lg border border-border/60">
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/50">
-              {data.headers.map((header, index) => (
+              {data.headers.map((header: any, index: any) => (
                 <th
                   key={index}
                   className="p-4 text-left font-medium text-foreground/70"
@@ -156,7 +157,7 @@ function Table({ data }) {
             </tr>
           </thead>
           <tbody>
-            {data.rows.map((row, index) => (
+            {data.rows.map((row: any, index: any) => (
               <tr
                 key={index}
                 className={cn(
@@ -165,7 +166,7 @@ function Table({ data }) {
                   "last:border-0"
                 )}
               >
-                {row.map((cell, cellIndex) => (
+                {row.map((cell: any, cellIndex: any) => (
                   <td key={cellIndex} className="p-4 text-foreground/80">
                     {cell}
                   </td>
@@ -179,7 +180,7 @@ function Table({ data }) {
   );
 }
 
-function Paragraph(props) {
+function Paragraph(props: any) {
   return (
     <p
       className={cn(
@@ -192,7 +193,7 @@ function Paragraph(props) {
   );
 }
 
-function UnorderedList(props) {
+function UnorderedList(props: any) {
   return (
     <ul
       className={cn(
@@ -206,7 +207,7 @@ function UnorderedList(props) {
   );
 }
 
-function OrderedList(props) {
+function OrderedList(props: any) {
   return (
     <ol
       className={cn(
@@ -239,7 +240,7 @@ const components = {
   MyComponent,
 };
 
-export function CustomMDX(props) {
+export function CustomMDX(props: any) {
   return (
     <article className="prose prose-zinc dark:prose-invert max-w-none">
       <MDXRemote
