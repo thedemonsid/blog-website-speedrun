@@ -4,7 +4,7 @@ import { Clock, Tag, ArrowRight } from "lucide-react";
 import { formatDate } from "@/lib/format-date";
 
 import Link from "next/link";
-export default function BlogsList({ blogs }: any) {
+export default function BlogsList({ blogs }:any) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-background via-background/90 to-background text-foreground px-4 py-20">
       <div className="max-w-5xl mx-auto">
