@@ -1,24 +1,59 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { ReactNode } from "react";
 import { highlight } from "sugar-high";
 import MyComponent from "./my-component";
 import { cn } from "@/lib/utils";
-function slugify(text: string) {
+// Interfaces
+interface HeadingProps {
+  children: string;
+}
+
+interface CustomLinkProps {
+  href: string;
+  children: ReactNode;
+}
+
+interface CodeProps {
+  children: string;
+}
+
+interface BlockQuoteProps {
+  children: ReactNode;
+}
+
+interface TableData {
+  headers: string[];
+  rows: ReactNode[][];
+}
+
+interface TableProps {
+  data: TableData;
+}
+
+interface MDXProps {
+  source: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  components?: Record<string, React.ComponentType<any>>;
+}
+
+// Functions
+function slugify(text: string): string {
   return text
     .toString()
     .toLowerCase()
     .trim()
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/&/g, "-and-") // Replace & with 'and'
-    .replace(/\-\-+/g, "-"); // Replace multiple - with single -
+    .replace(/\s+/g, "-")
+    .replace(/&/g, "-and-")
+    .replace(/\-\-+/g, "-");
 }
-function createHeading(level: number) {
-  const Heading = ({ children }: any) => {
-    let slug = slugify(children);
 
-    const headingClasses: { [key: number]: string } = {
+function createHeading(level: number) {
+  const Heading = ({ children }: HeadingProps) => {
+    const slug = slugify(children);
+
+    const headingClasses: Record<number, string> = {
       1: "text-4xl font-bold mt-8 mb-4",
       2: "text-3xl font-semibold mt-6 mb-3",
       3: "text-2xl font-medium mt-4 mb-2",
@@ -31,11 +66,11 @@ function createHeading(level: number) {
       `h${level}`,
       { id: slug, className: headingClasses[level] },
       [
-      React.createElement("a", {
-        href: `#${slug}`,
-        key: `link-${slug}`,
-        className: cn(`heading-${level}`, "anchor"),
-      }),
+        React.createElement("a", {
+          href: `#${slug}`,
+          key: `link-${slug}`,
+          className: cn(`heading-${level}`, "anchor"),
+        }),
       ],
       children
     );
@@ -43,52 +78,70 @@ function createHeading(level: number) {
   Heading.displayName = `Heading${level}`;
   return Heading;
 }
-function RoundedImage(props: any) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+
+function RoundedImage({ alt, ...props }: ImageProps) {
+  return <Image alt={alt} className="rounded-lg" {...props} />;
 }
-function CustomLink(props: any) {
-  let href = props.href;
+
+function CustomLink({ href, children, ...props }: CustomLinkProps) {
   if (href.startsWith("/")) {
     return (
       <Link href={href} {...props}>
-        {props.children}
+        {children}
       </Link>
     );
   }
   if (href.startsWith("#")) {
-    return <a {...props}>{props.children}</a>;
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
   }
-  return <a target="_blank" rel="noopener noreferrer" {...props}></a>;
-}
-function Code({ children, ...props }: any) {
-  let codeHTML = highlight(children);
-  return <code {...props} dangerouslySetInnerHTML={{ __html: codeHTML }} />;
-}
-function BlockQuote(props: any) {
   return (
-    <blockquote
-      {...props}
-      className="border-l-4 border-gray-300 pl-4"
-    ></blockquote>
+    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </a>
   );
 }
-function Table({ data }: any) {
-  let headers = data.headers.map((header: any, index: any) => (
-    <th key={index}>{header}</th>
-  ));
-  let rows = data.rows.map((cell: any, cellIndex: any) => {
-    return <tr key={cellIndex}>{cell}</tr>;
-  });
+
+function Code({ children, ...props }: CodeProps) {
+  const codeHTML = highlight(children);
+  return <code {...props} dangerouslySetInnerHTML={{ __html: codeHTML }} />;
+}
+
+function BlockQuote({ children, ...props }: BlockQuoteProps) {
+  return (
+    <blockquote {...props} className="border-l-4 border-gray-300 pl-4">
+      {children}
+    </blockquote>
+  );
+}
+
+function Table({ data }: TableProps) {
   return (
     <table>
       <thead>
-        <tr>{headers}</tr>
+        <tr>
+          {data.headers.map((header, index) => (
+            <th key={index}>{header}</th>
+          ))}
+        </tr>
       </thead>
-      <tbody>{rows}</tbody>
+      <tbody>
+        {data.rows.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            {row.map((cell, cellIndex) => (
+              <td key={cellIndex}>{cell}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
-let components = {
+
+const components = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -102,11 +155,12 @@ let components = {
   Table,
   MyComponent,
 };
-export function CustomMDX(props: any) {
+
+export function CustomMDX(props: MDXProps) {
   return (
     <MDXRemote
       {...props}
       components={{ ...components, ...(props.components || {}) }}
-    ></MDXRemote>
+    />
   );
 }

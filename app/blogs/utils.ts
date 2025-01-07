@@ -15,24 +15,17 @@ async function readMDXfile(filePath: string) {
   return matter(rawContent);
 }
 
-enum MetaDataProps {
-  title = "title",
-  publishedAt = "publishedAt",
-  summary = "summary",
-  category = "category",
-}
-
 // present the mdx data and metadata
 async function getMDXData(dir: string) {
   const mdxFiles = await getMDXfiles(dir);
   const mdxData = await Promise.all(
     mdxFiles.map(async (file) => {
       const { data, content } = await readMDXfile(path.join(dir, file));
-      const metadata: { [key in MetaDataProps]: any } = {
-        title: data.title,
+      const metadata = {
+        title: data.titl as string,
         publishedAt: data.publishedAt,
-        summary: data.summary,
-        category: data.category,
+        summary: data.summary as string,
+        category: data.category as string,
       };
       const slug = path.basename(file, path.extname(file));
       return { metadata, content, slug };
