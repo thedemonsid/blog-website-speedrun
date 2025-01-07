@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { MDXRemote } from "next-mdx-remote/rsc";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import React from "react";
 import { highlight } from "sugar-high";
 import { CodeBlock } from "./code-block";
 import MyComponent from "./my-component";

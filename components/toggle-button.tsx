@@ -12,6 +12,8 @@ export function ModeToggle() {
     try {
       setTheme(theme === "light" ? "dark" : "light");
     } catch (error) {
+      console.log(error);
+
       setTheme(theme === "light" ? "dark" : "light");
     }
   }, [setTheme, theme]);
