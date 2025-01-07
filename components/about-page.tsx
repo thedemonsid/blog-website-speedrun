@@ -149,10 +149,12 @@ export default function AboutPage() {
                   </h3>
                   <div className="grid gap-3 text-primary dark:text-secondary-foreground/60">
                     <p>Editor: VS Code</p>
-                    <p>Terminal: Warp Terminal (Vdcds)</p>
-                    <p>API Testing: Postman (the_demon_sid)</p>
+                    <p>
+                      Terminal: Warp Terminal (Vdcds), Alacritty (the_demon_sid)
+                    </p>
                     <p>
                       Theme: Catppuccin, Andromeda,{" "}
+                      <span className="text-foreground">Github Theme</span>(the_demon_sid),{" "}
                       <a
                         href="https://chai-desktop.com/"
                         target="_blank"
@@ -174,7 +176,7 @@ export default function AboutPage() {
                       rel="noopener noreferrer"
                       className=" text-primary hover:text-muted-foreground inline-flex items-center"
                     >
-                      Asus TUF F15 (The Demon Sid){" "}
+                      Asus TUF F15 (the_demon_sid){" "}
                       <ExternalLink className="w-3 h-3 ml-1" />
                     </a>
                     <a
