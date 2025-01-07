@@ -26,6 +26,7 @@ async function getMDXData(dir: string) {
         publishedAt: data.publishedAt,
         summary: data.summary as string,
         category: data.category as string,
+        author: data.author as string,
       };
       const slug = path.basename(file, path.extname(file));
       return { metadata, content, slug };

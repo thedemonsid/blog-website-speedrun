@@ -183,7 +183,7 @@ function Paragraph(props) {
   return (
     <p
       className={cn(
-        "leading-7 [&:not(:first-child)]:mt-6",
+        "leading-7 [&:not(:first-child)]:my-6",
         "text-foreground/80",
         "text-pretty"
       )}
