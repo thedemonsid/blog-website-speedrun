@@ -16,14 +16,14 @@ async function readMDXfile(filePath: string) {
 }
 export type BlogProps = {
   metadata: {
-    title: "string";
-    publishedAt: "string";
-    summary: "string";
-    category: "string";
-    author: "string";
+    title: string;
+    publishedAt: any;
+    summary: string;
+    category: string;
+    author: string;
   };
-  content: "string";
-  slug: "string";
+  content: string;
+  slug: string;
 };
 // present the mdx data and metadata
 async function getMDXData(dir: string) {

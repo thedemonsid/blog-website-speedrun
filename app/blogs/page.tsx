@@ -8,5 +8,5 @@ export default async function BlogsPage() {
   if (!blogs || blogs.length == 0) {
     notFound();
   }
-  return <BlogsList blogs={blogs ?? []} />;
+  return <BlogsList blogs={blogs} />;
 }
