@@ -7,7 +7,8 @@ const MyComponent = () => {
   const dragY = useMotionValue(0);
 
   // Transform drag position to scale value
-  const scale = useTransform([dragX, dragY], ([latestX, latestY]:any) => {
+  const scale = useTransform([dragX, dragY], ([latestX, latestY]) => {
+    //@ts-expect-error - useTransform types don't correctly infer tuple array inputs
     const distance = Math.sqrt(latestX * latestX + latestY * latestY);
     return Math.max(1, distance / 100);
   });

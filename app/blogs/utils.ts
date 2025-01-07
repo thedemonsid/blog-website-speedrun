@@ -14,7 +14,17 @@ async function readMDXfile(filePath: string) {
   const rawContent = await fs.readFile(filePath, "utf8");
   return matter(rawContent);
 }
-
+export type BlogProps = {
+  metadata: {
+    title: "string";
+    publishedAt: "string";
+    summary: "string";
+    category: "string";
+    author: "string";
+  };
+  content: "string";
+  slug: "string";
+};
 // present the mdx data and metadata
 async function getMDXData(dir: string) {
   const mdxFiles = await getMDXfiles(dir);
