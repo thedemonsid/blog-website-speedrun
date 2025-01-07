@@ -1,45 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import React, { ReactNode } from "react";
 import { highlight } from "sugar-high";
+import { CodeBlock } from "./code-block";
 import MyComponent from "./my-component";
 import { cn } from "@/lib/utils";
-// Interfaces
-interface HeadingProps {
-  children: string;
-}
 
-interface CustomLinkProps {
-  href: string;
-  children: ReactNode;
-}
-
-interface CodeProps {
-  children: string;
-}
-
-interface BlockQuoteProps {
-  children: ReactNode;
-}
-
-interface TableData {
-  headers: string[];
-  rows: ReactNode[][];
-}
-
-interface TableProps {
-  data: TableData;
-}
-
-interface MDXProps {
-  source: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  components?: Record<string, React.ComponentType<any>>;
-}
-
-// Functions
-function slugify(text: string): string {
+function slugify(text) {
   return text
     .toString()
     .toLowerCase()
@@ -49,95 +19,205 @@ function slugify(text: string): string {
     .replace(/\-\-+/g, "-");
 }
 
-function createHeading(level: number) {
-  const Heading = ({ children }: HeadingProps) => {
+function createHeading(level) {
+  const Heading = ({ children }) => {
     const slug = slugify(children);
 
-    const headingClasses: Record<number, string> = {
-      1: "text-4xl font-bold mt-8 mb-4",
-      2: "text-3xl font-semibold mt-6 mb-3",
-      3: "text-2xl font-medium mt-4 mb-2",
-      4: "text-xl font-medium mt-3 mb-1",
-      5: "text-lg font-medium mt-2 mb-1",
-      6: "text-base font-medium mt-1 mb-1",
+    const headingClasses = {
+      1: "scroll-m-20 text-4xl font-bold tracking-tight mt-16 mb-6 text-foreground/90 first:mt-8",
+      2: "scroll-m-20 text-3xl font-semibold tracking-tight mt-12 mb-6 text-foreground/90 border-b border-border/40 pb-2 first:mt-0",
+      3: "scroll-m-20 text-2xl font-semibold tracking-tight mt-10 mb-4 text-foreground/80",
+      4: "scroll-m-20 text-xl font-semibold tracking-tight mt-8 mb-4 text-foreground/80",
+      5: "scroll-m-20 text-lg font-medium tracking-tight mt-6 mb-3 text-foreground/70",
+      6: "scroll-m-20 text-base font-medium tracking-tight mt-4 mb-2 text-foreground/70",
     };
 
     return React.createElement(
       `h${level}`,
-      { id: slug, className: headingClasses[level] },
+      {
+        id: slug,
+        className: cn(
+          headingClasses[level],
+          "relative group flex items-center gap-2"
+        ),
+      },
       [
-        React.createElement("a", {
-          href: `#${slug}`,
-          key: `link-${slug}`,
-          className: cn(`heading-${level}`, "anchor"),
-        }),
+        React.createElement(
+          "a",
+          {
+            href: `#${slug}`,
+            key: `link-${slug}`,
+            className: cn(
+              "hidden absolute group-hover:inline-block",
+              "right-full pr-2",
+              "text-muted-foreground/50 hover:text-primary/60",
+              "transition-colors duration-200"
+            ),
+            "aria-label": "Anchor",
+          },
+          "#"
+        ),
       ],
       children
     );
   };
-  Heading.displayName = `Heading${level}`;
   return Heading;
 }
 
-function RoundedImage({ alt, ...props }: ImageProps) {
-  return <Image alt={alt} className="rounded-lg" {...props} />;
+function RoundedImage(props) {
+  return (
+    <figure className="my-10 overflow-hidden rounded-lg ring-1 ring-border/50">
+      <div className="relative aspect-video overflow-hidden bg-muted/50">
+        <Image
+          alt={props.alt}
+          className="object-cover transition-all hover:scale-105 duration-500"
+          {...props}
+        />
+      </div>
+      {props.alt && (
+        <figcaption className="mt-2.5 px-2 text-sm text-muted-foreground/80 text-center italic">
+          {props.alt}
+        </figcaption>
+      )}
+    </figure>
+  );
 }
 
-function CustomLink({ href, children, ...props }: CustomLinkProps) {
+function CustomLink(props) {
+  const href = props.href;
+
+  const linkClasses = cn(
+    "font-medium inline-flex items-center gap-1",
+    "text-primary/90 hover:text-primary",
+    "underline-offset-4 hover:underline",
+    "transition-colors duration-200"
+  );
+
   if (href.startsWith("/")) {
     return (
-      <Link href={href} {...props}>
-        {children}
+      <Link href={href} className={linkClasses} {...props}>
+        {props.children}
       </Link>
     );
   }
-  if (href.startsWith("#")) {
-    return (
-      <a href={href} {...props}>
-        {children}
-      </a>
-    );
-  }
+
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
-      {children}
+    <a
+      className={linkClasses}
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
+      {props.children}
     </a>
   );
 }
 
-function Code({ children, ...props }: CodeProps) {
+function Code({ children, className }) {
   const codeHTML = highlight(children);
-  return <code {...props} dangerouslySetInnerHTML={{ __html: codeHTML }} />;
-}
+  const language = className?.replace("language-", "") || "plaintext";
 
-function BlockQuote({ children, ...props }: BlockQuoteProps) {
   return (
-    <blockquote {...props} className="border-l-4 border-gray-300 pl-4">
+    <CodeBlock codeHTML={codeHTML} language={language}>
       {children}
-    </blockquote>
+    </CodeBlock>
   );
 }
 
-function Table({ data }: TableProps) {
+function BlockQuote(props) {
   return (
-    <table>
-      <thead>
-        <tr>
-          {data.headers.map((header, index) => (
-            <th key={index}>{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.rows.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
+    <blockquote
+      {...props}
+      className={cn(
+        "my-8 border-l-2 border-primary/60 pl-6",
+        "bg-muted/50 py-4 pr-4 rounded-r-lg",
+        "italic text-muted-foreground",
+        "[&>*]:mt-0 [&>*:not(:first-child)]:mt-4"
+      )}
+    />
+  );
+}
+
+function Table({ data }) {
+  return (
+    <div className="my-8 w-full overflow-hidden rounded-lg border border-border/60">
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="border-b border-border bg-muted/50">
+              {data.headers.map((header, index) => (
+                <th
+                  key={index}
+                  className="p-4 text-left font-medium text-foreground/70"
+                >
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.rows.map((row, index) => (
+              <tr
+                key={index}
+                className={cn(
+                  "border-b border-border/50",
+                  "hover:bg-muted/50 transition-colors",
+                  "last:border-0"
+                )}
+              >
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex} className="p-4 text-foreground/80">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
             ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function Paragraph(props) {
+  return (
+    <p
+      className={cn(
+        "leading-7 [&:not(:first-child)]:mt-6",
+        "text-foreground/80",
+        "text-pretty"
+      )}
+      {...props}
+    />
+  );
+}
+
+function UnorderedList(props) {
+  return (
+    <ul
+      className={cn(
+        "my-6 ml-6 list-disc",
+        "[&>li]:mt-2",
+        "text-foreground/80",
+        "marker:text-muted-foreground/50"
+      )}
+      {...props}
+    />
+  );
+}
+
+function OrderedList(props) {
+  return (
+    <ol
+      className={cn(
+        "my-6 ml-6 list-decimal",
+        "[&>li]:mt-2",
+        "text-foreground/80",
+        "marker:text-muted-foreground/50",
+        "[&>li::marker]:font-medium"
+      )}
+      {...props}
+    />
   );
 }
 
@@ -148,19 +228,24 @@ const components = {
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
+  p: Paragraph,
+  ul: UnorderedList,
+  ol: OrderedList,
   Image: RoundedImage,
   a: CustomLink,
   code: Code,
   blockquote: BlockQuote,
-  Table,
+  table: Table,
   MyComponent,
 };
 
-export function CustomMDX(props: MDXProps) {
+export function CustomMDX(props) {
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
+    <article className="prose prose-zinc dark:prose-invert max-w-none">
+      <MDXRemote
+        {...props}
+        components={{ ...components, ...(props.components || {}) }}
+      />
+    </article>
   );
 }

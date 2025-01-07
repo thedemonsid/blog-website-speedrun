@@ -1,5 +1,5 @@
 import React from "react";
-import {  getBlogPost } from "../utils";
+import { getBlogPost } from "../utils";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx/custom-mdx";
 import { formatDate } from "@/lib/format-date";
@@ -12,7 +12,7 @@ const Blog = async ({ params }: { params: Promise<{ slug: string }> }) => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6 font-wotfard">
       <h1 className="text-4xl font-bold mb-4">{blog.metadata.title}</h1>
       <p className="text-gray-500 mb-2">
         {formatDate(blog.metadata.publishedAt)}
