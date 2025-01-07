@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background via-background/90 to-background text-foreground px-4 py-20">
+    <main className="min-h-screen bg-gradient-to-b from-background via-background/90 to-background text-foreground px-4 py-20 font-wotfard">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -33,7 +33,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-muted via-inherit to-primary bg-clip-text text-secondary-foreground/90"
+            className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-muted via-inherit to-primary bg-clip-text text-primary/90 dark:text-secondary-foreground"
           >
             About Us
           </motion.h1>
@@ -44,9 +44,9 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="prose prose-invert max-w-none"
+          className="prose prose-invert max-w-4xl"
         >
-          <div className="text-lg text-primary leading-relaxed space-y-6">
+          <div className="text-lg text-primary dark:text-secondary-foreground/60 leading-relaxed tracking-wide space-y-6 ">
             <p>
               We are childhood friends from a town in Maharashtra. It&apos;s
               been since almost childhood that we love to explore the subject in
@@ -78,15 +78,15 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="space-y-8"
+          className="space-y-8 prose prose-invert max-w-4xl"
         >
           <Card className="bg-background border-border/50">
             <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-2 text-2xl font-bold text-primary">
+              <div className="flex items-center gap-2 text-3xl font-bold text-primary/90 dark:text-secondary-foreground">
                 <Code2 className="w-6 h-6" />
                 What we Aim to bring
               </div>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-primary">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-primary/90 dark:text-secondary-foreground/60 leading-relaxed tracking-wide">
                 {[
                   "Fun nitty-gritty of stuff",
                   "Understandable language",
@@ -107,30 +107,34 @@ export default function AboutPage() {
           {/* Recommendations */}
           <Card className="bg-background border-border/50">
             <CardContent className="p-6 space-y-6">
-              <div className="flex items-center gap-2 text-2xl font-bold text-primary">
+              <div className="flex items-center gap-2 text-2xl font-bold text-primary/90 dark:text-secondary-foreground">
                 <Terminal className="w-6 h-6" />
                 Recommendations
               </div>
 
-              <div className="space-y-6 text-primary">
+              <div className="space-y-6">
                 <div className="space-y-2">
-                  <h3 className="font-semibold text-primary">
-                    Youtube channels
+                  <h3 className="font-semibold text-primary dark:text-secondary-foreground/60">
+                    Intersting CS Content Creators
                   </h3>
-                  <div className="flex gap-4 flex-wrap">
+                  <div className="flex gap-4 flex-wrap text-primary dark:text-secondary-foreground/60">
                     {[
-                      ["Harkirat Singh", "https://www.youtube.com/@harkirat1"],
+                      ["Josh Comeau", "https://www.joshwcomeau.com/"],
+                      ["Theo : t3.gg", "https://www.youtube.com/@t3dotgg"],
+                      ["Primeagen", "https://www.twitch.tv/theprimeagen"],
                       [
-                        "Hitesh Chaudhary",
-                        "https://www.youtube.com/@HiteshChoudharydotcom",
+                        "Arpit Bhayani",
+                        "https://www.youtube.com/@AsliEngineering",
                       ],
+
+                      ["Wesley", "https://www.youtube.com/@ByteGrad"],
                     ].map(([name, url], i) => (
                       <a
                         key={i}
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-primary hover:text-muted-foreground"
+                        className="inline-flex items-center gap-1 hover:text-primary/60"
                       >
                         {name}
                         <ExternalLink className="w-3 h-3" />
@@ -140,8 +144,10 @@ export default function AboutPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-semibold text-primary">Our Setup</h3>
-                  <div className="grid gap-3 text-primary">
+                  <h3 className="font-semibold text-primary dark:text-secondary-foreground/60">
+                    Our Setup
+                  </h3>
+                  <div className="grid gap-3 text-primary dark:text-secondary-foreground/60">
                     <p>Editor: VS Code</p>
                     <p>Terminal: Warp Terminal (Vdcds)</p>
                     <p>API Testing: Postman (the_demon_sid)</p>
@@ -151,7 +157,7 @@ export default function AboutPage() {
                         href="https://chai-desktop.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary hover:text-muted inline-flex items-center"
+                        className="text-primary dark:text-secondary-foreground hover:text-muted inline-flex items-center"
                       >
                         Chai theme <ExternalLink className="w-3 h-3 ml-0.5" />
                       </a>

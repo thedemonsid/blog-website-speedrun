@@ -22,7 +22,7 @@ async function getMDXData(dir: string) {
     mdxFiles.map(async (file) => {
       const { data, content } = await readMDXfile(path.join(dir, file));
       const metadata = {
-        title: data.titl as string,
+        title: data.title as string,
         publishedAt: data.publishedAt,
         summary: data.summary as string,
         category: data.category as string,

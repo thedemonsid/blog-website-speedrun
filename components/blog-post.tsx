@@ -9,6 +9,7 @@ import Markdown from "react-markdown";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkGfm from "remark-gfm";
+import ProgressBar from "./progress-bar";
 
 interface BlogPostProps {
   blog: {

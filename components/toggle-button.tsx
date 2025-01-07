@@ -4,17 +4,24 @@ import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import useSound from "@/hooks/usesound";
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
+  const playSound = useSound("themeChange");
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  const toggleTheme = React.useCallback(() => {
+    try {
+      playSound();
+      setTheme(theme === "light" ? "dark" : "light");
+    } catch (error) {
+      setTheme(theme === "light" ? "dark" : "light");
+    }
+  }, [playSound, setTheme, theme]);
 
   return (
     <Button
-      variant="non-chalant"
+      variant="ghost"
       size="icon"
       onClick={toggleTheme}
       aria-label="Toggle theme"
@@ -24,5 +31,3 @@ export function ModeToggle() {
     </Button>
   );
 }
-
-export default ModeToggle;

@@ -1,28 +1,10 @@
-"use client";
-
-import React from "react";
-import Link from "next/link";
-import { ArrowRight, Clock, Tag } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Clock, Tag, ArrowRight } from "lucide-react";
 import { formatDate } from "@/lib/format-date";
 
-interface Blog {
-  slug: string;
-  metadata: {
-    title: string;
-    publishedAt: string;
-    summary: string;
-    category: string;
-  };
-  content: string;
-}
-
-interface BlogsListProps {
-  blogs: Blog[];
-}
-
-export default function BlogsList({ blogs }: BlogsListProps) {
+import Link from "next/link";
+export default function BlogsList({ blogs }) {
   return (
     <main className="min-h-screen bg-gradient-to-b from-background via-background/90 to-background text-foreground px-4 py-20">
       <div className="max-w-5xl mx-auto">
@@ -37,7 +19,7 @@ export default function BlogsList({ blogs }: BlogsListProps) {
             </p>
           </div>
 
-          <div className="h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
+          <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -46,21 +28,21 @@ export default function BlogsList({ blogs }: BlogsListProps) {
               key={blog.slug}
               className="group relative bg-background border-border/50 hover:border-border backdrop-blur-sm transition-all duration-500"
             >
-              <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <CardContent className="p-6 space-y-4">
                 <div className="flex items-center gap-4 flex-wrap">
                   {blog.metadata.category && (
                     <Badge
                       variant="secondary"
-                      className="bg-purple-500/10 text-purple-300 border border-purple-500/20 font-mono"
+                      className="bg-primary/10 text-primary border border-primary/20 font-mono"
                     >
                       <Tag className="w-3 h-3 mr-1" />
                       {blog.metadata.category}
                     </Badge>
                   )}
 
-                  <div className="flex items-center text-sm text-zinc-500">
+                  <div className="flex items-center text-sm text-muted-foreground">
                     <Clock className="w-3 h-3 mr-1" />
                     <span>{formatDate(blog.metadata.publishedAt)}</span>
                   </div>
@@ -70,15 +52,15 @@ export default function BlogsList({ blogs }: BlogsListProps) {
                   href={`/blogs/${blog.slug}`}
                   className="block space-y-3 group/link"
                 >
-                  <h2 className="text-2xl font-bold text-primary group-hover:text-muted-foreground transition-colors duration-300">
+                  <h2 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                     {blog.metadata.title}
                   </h2>
 
-                  <p className="text-zinc-400 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {blog.metadata.summary}
                   </p>
 
-                  <div className="inline-flex items-center gap-2 text-[15px] text-zinc-500 group-hover/link:text-purple-300 transition-colors duration-300">
+                  <div className="inline-flex items-center gap-2 text-[15px] text-muted-foreground group-hover/link:text-primary transition-colors duration-300">
                     Read article
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                   </div>
