@@ -1,0 +1,62 @@
+---
+title: "Understanding Electron and React.js Setup for It [Frontend]"
+publishedAt: 2025-03-31
+summary: "Learn about Electron, how to create amazing desktop apps with it, and leverage your React knowledge to enhance the development experience."
+category: "Frontend Development"
+author: "the_demon_sid"
+---
+### Table of Contents
+
+1. [Prerequisites](#prerequisites)  
+2. [What is Electron?](#what-is-electron)
+3. [Why electron?](#why-electron)
+4. [Setting Up the Project (React)](#setting-up-the-project-(react))
+
+
+### Prerequisites
+
+Before diving into this blog, ensure you have a solid understanding of the following topics:
+
+- **Web Development Fundamentals**  
+- **React Basics**: Familiarity with the basic structure of a React project.  
+- **TypeScript** *(optional)*: While not mandatory, it can be helpful.
+
+
+### What is Electron?
+
+Electron is a **framework for building desktop applications** using web technologies like **HTML**, **CSS**, and **JavaScript**.  
+It enables the creation of **cross-platform apps** that work seamlessly(not everytime 😐) on **Windows**, **macOS**, and **Linux**.
+
+In essence, you are writing simple web code *(HTML CSS and JS)* to build powerful(but quite heavy 😅) desktop applications.
+
+> **Must know**: A simple "Hello World" program in Electron can take up around 180MB of disk space.
+
+> **My Advice**: For a deeper understanding, refer to the official [Electron Documentation](https://www.electronjs.org/docs/latest).
+
+### Why Electron?
+
+Even with its large size compared to traditional methods, Electron stands out because:
+
+- It's **easy to use**, making it accessible for web developers.  
+- It has a **supportive and active community** that continuously improves the framework.  
+- The learning curve is minimal, as it&apos;s **straightforward and beginner-friendly**.  
+
+### Setting Up the Project (React)
+
+1. Create a vite project
+```sh
+pnpm create vite
+```
+Do the following :
+
+![pnpm create vite](/pnpm-create-vite.png)
+
+- Choose the project name you want
+- Select React as framework
+- Select TypeScript (best practices)  
+and then run :
+```sh
+cd your-project-name
+pnpm install
+```
+
