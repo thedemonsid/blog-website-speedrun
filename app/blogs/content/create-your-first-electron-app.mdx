@@ -59,4 +59,37 @@ and then run :
 cd your-project-name
 pnpm install
 ```
+> **Optional**: Initialize a Git repository to track your changes and collaborate effectively if needed.
 
+Try Running the react app you would see:
+![pnpm dev](/vite-project-look.png)
+
+2. Create a new folder named `web` inside the `src` directory. 
+   This folder will house the web-specific part of your project.
+
+3. Copy all the files from the `src` directory into the `web` folder. 
+   This separation ensures that the web and Electron parts of the project remain organized and modular.
+
+4. Update the `<script>` tag's `src` attribute in your `index.html` file to point to the correct path.  
+   This ensures that your application loads the appropriate scripts for the Electron environment.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/web/main.tsx"></script>
+  </body>
+</html>
+```
+Now run your react app via `pnpm dev` and it will work as intended :)
+
+### Adding Electron
+
+1. Create a folder named `electron` inside the `src` directory. 
