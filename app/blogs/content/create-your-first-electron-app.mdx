@@ -45,11 +45,11 @@ Even with its large size compared to traditional methods, Electron stands out be
 
 1. Create a vite project
 ```sh
-pnpm create vite
+npm create vite@latest
 ```
 Do the following :
 
-![pnpm create vite](/pnpm-create-vite.png)
+![npm create vite](/npm-create-vite.png)
 
 - Choose the project name you want
 - Select React as framework
@@ -57,12 +57,12 @@ Do the following :
 and then run :
 ```sh
 cd your-project-name
-pnpm install
+npm install
 ```
 > **Optional**: Initialize a Git repository to track your changes and collaborate effectively if needed.
 
 Try Running the react app you would see:
-![pnpm dev](/vite-project-look.png)
+![npm dev](/vite-project-look.png)
 
 2. Create a new folder named `web` inside the `src` directory. 
    This folder will house the web-specific part of your project.
@@ -88,8 +88,84 @@ Try Running the react app you would see:
   </body>
 </html>
 ```
-Now run your react app via `pnpm dev` and it will work as intended :)
+Now run your react app via `npm run dev` and it will work as intended :)
 
 ### Adding Electron
 
+#### Step 1: Create a Folder for Electron
+Create a folder named `electron` inside the `src` directory.  
+This folder will contain all the Electron-specific code, keeping it separate from the web code.
+
+#### Step 2: Install Electron
+Install Electron as a dev dependency by running the following command:
+
+```sh
+npm install electron --save-dev
+```
+
 1. Create a folder named `electron` inside the `src` directory. 
+2. Install Electron
+```sh
+npm install electron --save-dev
+```
+3. Create a `tsconfig.json` inside `src` as we will have different `typescript` setup for electron app.
+```json
+// src/electron/tsconfig.json
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "NodeNext",
+    "outDir": "../../dist-electron",
+    "skipLibCheck": true,
+    "types": ["../../types"]
+  }
+}
+```
+4. In the `tsconfig.app.json` exclude `src/electron`
+```json
+// tsconfig.app.json
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"],
+  "exclude": ["src/electron"]
+}
+```
+5. Create `main.ts` inside the `electron` folder.Write any console you like for example
+
+```tsx
+console.log("This is the_demon_sid from electron")
+```
+6. In `package.json` add 
+
+```json
+"main" : "dist/electron/main.js"
+...
+"scripts":{
+  ...
+  "dev:electron" : "electron ."
+ }
+```
+this will run our main.js in dist/electron folder with elctron and you will receive a log on terminal.
