@@ -31,8 +31,8 @@ const Footer = () => {
       {/* Subtle top border */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-      <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col justify-start items-start space-y-6">
-        <div className="grid gap-6 md:grid-cols-2">
+      <div className="max-w-7xl mx-auto px-8 py-8 flex flex-col justify-center items-center space-y-6">
+        <div className="grid gap-6 md:grid-cols-2 w-full">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

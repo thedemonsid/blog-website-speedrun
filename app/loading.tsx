@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function BlogLoading() {
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6 mt-10">
+    <div className="max-w-4xl mx-auto p-6 space-y-6 flex-col justify-between mt-20 items-center min-h-screen">
       {/* Title skeleton */}
       <Skeleton className="h-12 w-3/4" />
 
