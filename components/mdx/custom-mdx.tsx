@@ -115,13 +115,20 @@ function CustomLink(props: any) {
 }
 
 function Code({ children, className }: any) {
-  const codeHTML = highlight(children);
-  const language = className?.replace("language-", "") || "plaintext";
+  if (className) {
+    const codeHTML = highlight(children);
+    const language = className.replace("language-", "") || "plaintext";
 
+    return (
+      <CodeBlock codeHTML={codeHTML} language={language}>
+        {children}
+      </CodeBlock>
+    );
+  }
+
+  // If no className, it's likely inline code (single backticks)
   return (
-    <CodeBlock codeHTML={codeHTML} language={language}>
-      {children}
-    </CodeBlock>
+    <code className="bg-card text-primary px-2 py-0.5 rounded">{children}</code>
   );
 }
 
