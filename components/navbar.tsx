@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ModeToggle } from "./toggle-button";
 
 const navItems = [
-  { name: "Home", href: "/" },
   { name: "Blog", href: "/blogs" },
   { name: "About", href: "/about" },
 ];
@@ -27,7 +26,7 @@ const Navbar = () => {
                 height={32}
                 className="rounded-full"
               />
-              <span className="text-lg font-semibold tracking-tight">
+              <span className="hidden md:flex text-lg font-semibold tracking-tight">
                 vdsidously
               </span>
             </Link>
