@@ -7,7 +7,7 @@ import Footer from "@/components/footer";
 export const metadata: Metadata = {
   title: "Vdsidiously",
   description:
-    "This is a tech-blog site made in collabaration. The intent of this site is to demystify the jargon and make the tech world more accessible to everyone.Especailly the young indian developers.",
+    "This is a tech blog site made in collabaration. The intent of this site is to demystify the jargon and make the tech world more accessible to everyone.Especailly the young indian developers.",
 };
 
 export default function RootLayout({
