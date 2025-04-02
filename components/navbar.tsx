@@ -27,7 +27,7 @@ const Navbar = () => {
                 className="rounded-full"
               />
               <span className="hidden md:flex text-lg font-semibold tracking-tight">
-                vdsidously
+                Code2Tech
               </span>
             </Link>
 
