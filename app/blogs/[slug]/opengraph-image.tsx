@@ -10,29 +10,64 @@ export default async function Image({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  // Fetch your blog post data
-  const { slug } = await params;
-  const post = await getBlogPost(slug);
+  // Default fallback content
+  const fallbackTitle = "Blog Post";
+  const fallbackSummary = "Check out our latest blog post!";
 
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          fontSize: 48,
-          background: "white",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "40px",
-        }}
-      >
-        <h1 style={{ margin: "0 0 40px 0" }}>{post?.metadata.title}</h1>
-        <p style={{ fontSize: 28, opacity: 0.8 }}>{post?.metadata.summary}</p>
-      </div>
-    ),
-    { ...size }
-  );
+  try {
+    // Resolve params and fetch blog post data
+    const { slug } = await params;
+    const post = await getBlogPost(slug);
+
+    // Use fallback content if post or metadata is missing
+    const title = post?.metadata?.title || fallbackTitle;
+    const summary = post?.metadata?.summary || fallbackSummary;
+
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            fontSize: 48,
+            background: "white",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "40px",
+          }}
+        >
+          <h1 style={{ margin: "0 0 40px 0" }}>{title}</h1>
+          <p style={{ fontSize: 28, opacity: 0.8 }}>{summary}</p>
+        </div>
+      ),
+      { ...size }
+    );
+  } catch (error) {
+    console.error("Error generating OpenGraph image:", error);
+
+    // Return fallback content in case of an error
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            fontSize: 48,
+            background: "white",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "40px",
+          }}
+        >
+          <h1 style={{ margin: "0 0 40px 0" }}>{fallbackTitle}</h1>
+          <p style={{ fontSize: 28, opacity: 0.8 }}>{fallbackSummary}</p>
+        </div>
+      ),
+      { ...size }
+    );
+  }
 }
