@@ -3,7 +3,7 @@ import { getBlogPost } from "../utils";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-
+export const runtime = "edge";
 // Generate image based on blog post slug
 export default async function Image({
   params,
