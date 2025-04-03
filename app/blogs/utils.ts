@@ -48,6 +48,7 @@ async function getMDXData(dir: string) {
 
 export async function getBlogPosts() {
   const dir = path.join(process.cwd(), "app", "blogs", "content");
+  console.error("Directory:", dir);
   return await getMDXData(dir);
 }
 
