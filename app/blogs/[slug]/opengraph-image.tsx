@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
-import { readFile, readdir } from "node:fs/promises";
-import { join, extname, basename } from "node:path";
-import matter from "gray-matter";
+import { getBlogPost } from "../utils";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -17,34 +15,14 @@ export default async function Image({
   const fallbackSummary = "Check out our latest blog post!";
 
   try {
-    // Resolve params and extract slug
+    // Resolve params and fetch blog post data
     const { slug } = await params;
+    const post = await getBlogPost(slug);
 
-    // Define the directory containing the blog posts
-    const contentDir = join(process.cwd(), "app", "blogs", "content");
+    // Use fallback content if post or metadata is missing
+    const title = post?.metadata?.title || fallbackTitle;
+    const summary = post?.metadata?.summary || fallbackSummary;
 
-    // Get all .mdx files in the directory
-    const files = await readdir(contentDir);
-    const mdxFiles = files.filter((file) => extname(file) === ".mdx");
-
-    // Find the file matching the slug
-    const fileName = mdxFiles.find((file) => basename(file, ".mdx") === slug);
-
-    let title = fallbackTitle;
-    let summary = fallbackSummary;
-
-    if (fileName) {
-      // Read and parse the file
-      const filePath = join(contentDir, fileName);
-      const rawContent = await readFile(filePath, "utf8");
-      const { data } = matter(rawContent);
-
-      // Extract metadata
-      title = data.title || fallbackTitle;
-      summary = data.summary || fallbackSummary;
-    }
-
-    // Generate the OpenGraph image
     return new ImageResponse(
       (
         <div
