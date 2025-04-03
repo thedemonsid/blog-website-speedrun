@@ -22,7 +22,7 @@ export default async function Image({
 
     // Define the directory containing the blog posts
     const contentDir = join(process.cwd(), "app", "blogs", "content");
-
+    console.log(contentDir);
     // Get all .mdx files in the directory
     const files = await readdir(contentDir);
     const mdxFiles = files.filter((file) => extname(file) === ".mdx");
