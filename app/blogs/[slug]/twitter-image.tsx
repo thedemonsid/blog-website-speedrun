@@ -11,7 +11,7 @@ export default async function Image({
   params: Promise<{ slug: string }>;
 }) {
   // Default fallback content
-  const fallbackTitle = "Blog Post";
+  const fallbackTitle = process.cwd();
   const fallbackSummary = "Check out our latest blog post!";
 
   try {
