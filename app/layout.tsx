@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
-
+import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "Code2Tech",
   description:
@@ -24,6 +24,7 @@ export default function RootLayout({
           <Footer></Footer>
         </ThemeProvider>
       </body>
+      <Analytics></Analytics>
     </html>
   );
 }
