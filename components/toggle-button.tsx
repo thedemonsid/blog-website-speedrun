@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
   const toggleTheme = React.useCallback(() => {
@@ -13,7 +13,7 @@ export function ModeToggle() {
       src: ['/sounds/mouse-click.mp3'],
       volume: 0.18, // Lower volume for subtlety
       sprite: {
-      toggle: [0, 350], // Play only the first 350ms for a gentle effect
+        toggle: [0, 350], // Play only the first 350ms for a gentle effect
       },
     });
     sound.play('toggle');
