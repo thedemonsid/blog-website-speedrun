@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import NavBar from "@/components/navbar";
@@ -23,6 +24,13 @@ export default function RootLayout({
           {children}
           <Footer></Footer>
         </ThemeProvider>
+        <Script
+          src="https://widget.verlyai.xyz/embed.js"
+          data-chatbot-id="ij6it712urywufc029m4bdp1"
+          data-position="bottom-right"
+          data-primary-color="#007bff"
+          strategy="lazyOnload"
+        />
       </body>
       <Analytics></Analytics>
     </html>
